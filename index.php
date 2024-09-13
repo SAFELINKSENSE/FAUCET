@@ -201,7 +201,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                             $sl_json = json_decode(curl_exec($sl_curl), TRUE);
                             curl_close($sl_curl);
                             if ($sl_json['status'] === "success") {
-                                die(header('Location: '.$safelinkresult['SafeLink']));
+                                die(header('Location: '.$sl_json['SafeLink']));
                             } else {
                                 $_SESSION['toast_class'] = 'error';
                                 $_SESSION['toast_message'] = 'SafeLink something went wrong, please try again or contact admin !';
