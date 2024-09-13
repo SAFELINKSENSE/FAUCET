@@ -80,7 +80,7 @@ $turnstile_secret_key = "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz";
 /********************************************************************************************************************/
 $web_host = "https://".$_SERVER['HTTP_HOST'];
 $web_path = $web_host.$_SERVER['REQUEST_URI'];
-$web_favicon = $web_host."/favicon.ico";
+$web_favicon = $web_host."/favicon.png";
 $query_string = explode('=',$_SERVER['QUERY_STRING']);
 $qs_array = array('x');
 $qs = trim(strtolower($query_string[0]));
