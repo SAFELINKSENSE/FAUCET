@@ -193,13 +193,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                             $claim_hash = md5($address.$_SERVER['REMOTE_ADDR'].$_SERVER['HTTP_USER_AGENT'].time().rand(1,9999999999));
                             $_SESSION['claim_user']=$address;
                             $_SESSION['claim_hash']=$claim_hash;
-                            $safelinkapi = "https://safelink.my.id/?api=".trim(strtolower($faucetpay_email_address))."&url=".$web_host."/?x=".$claim_hash;
-                            $curll = curl_init();
-                            curl_setopt_array($curll, array(CURLOPT_RETURNTRANSFER => 1,CURLOPT_URL => $safelinkapi,));
-                            $safelinkdata = curl_exec($curll);
-                            $safelinkresult = json_decode($safelinkdata, true);
-                            curl_close($curll);
-                            if($safelinkresult['status']=="success"){
+                            $sl_user = strtolower($faucetpay_email_address);
+                            $sl_link = $web_host."/?x=".$claim_hash;
+                            $sl_base = "https://safelink.my.id/?api=".trim($sl_user)."&url=".trim($sl_link);
+                            $sl_curl = curl_init();
+                            curl_setopt_array($sl_curl, array(CURLOPT_RETURNTRANSFER => TRUE,CURLOPT_URL => $sl_base,));
+                            $sl_json = json_decode(curl_exec($sl_curl), TRUE);
+                            curl_close($sl_curl);
+                            if ($sl_json['status'] === "success") {
                                 die(header('Location: '.$safelinkresult['SafeLink']));
                             } else {
                                 $_SESSION['toast_class'] = 'error';
