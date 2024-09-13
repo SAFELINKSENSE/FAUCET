@@ -1,4 +1,7 @@
 <?php
+/**
+ DEMO FAUCET : https://faucet.bot.nu
+ **/
 error_reporting(0);
 header("X-Frame-Options: DENY");
 session_name('FAUCETSENSE');
