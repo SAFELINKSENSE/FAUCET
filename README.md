@@ -1,1 +1,1 @@
-Demo : https://faucet.bot.nu
+LIVE DEMO FAUCET : https://faucet.safelink.my.id
